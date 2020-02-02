@@ -190,6 +190,7 @@ public class Login extends Fragment implements OnClickListener {
                 break;
             case R.id.sign_in_button:
                 gSignIn();
+                break;
         }
 
     }
