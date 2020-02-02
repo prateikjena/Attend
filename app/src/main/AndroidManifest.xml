@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".welcome.Welcome" />
+        <activity android:name=".welcome.Welcome" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".authenticate.CustomToast" />
         <activity android:name=".authenticate.Validator" />
         <activity android:name=".authenticate.ForgotPassword" />

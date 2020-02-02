@@ -14,7 +14,6 @@
     <string name="newUser">Not a Member yet? Sign Up here.</string>
     <string name="fullName">Full Name</string>
     <string name="mobileNumber">Mobile Number</string>
-    <string name="location">Location</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="terms_conditions">By clicking SignUp you agree all the Terms and Conditions.</string>
     <string name="signUp">SIGN UP</string>
@@ -24,8 +23,12 @@
     <string name="back">BACK</string>
     <string name="logout">LogOut</string>
     <string name="welcome">You have successfully logged in..</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="drawer_header">Drawer Header</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="teacher">teacher</string>
+    <string name="student">Student</string>
 
     <string-array name="stream">
         <item>BS</item>

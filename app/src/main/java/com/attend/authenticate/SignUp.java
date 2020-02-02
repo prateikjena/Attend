@@ -12,10 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +47,8 @@ public class SignUp extends Fragment implements OnClickListener {
     private static Button signUpButton;
     private static CheckBox terms_conditions;
     private static Spinner stream, batch;
+    private static LinearLayout signupLayout;
+    private static Animation shakeAnimation;
     private FirebaseAuth mAuth;
     private FirebaseFirestore fStore;
     private String userID;
@@ -73,6 +78,7 @@ public class SignUp extends Fragment implements OnClickListener {
         stream = view.findViewById(R.id.spinner);
         batch = view.findViewById(R.id.spinner2);
         roll = view.findViewById(R.id.roll);
+        signupLayout = view.findViewById(R.id.signup_layout);
         mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
@@ -94,6 +100,11 @@ public class SignUp extends Fragment implements OnClickListener {
             getActivity().finish();
 
         }
+
+        // Load ShakeAnimation
+        shakeAnimation = AnimationUtils.loadAnimation(getActivity(),
+                R.anim.shake);
+
 
         // Setting text selector over textviews
         XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
@@ -148,9 +159,10 @@ public class SignUp extends Fragment implements OnClickListener {
                 || getMobileNumber.equals("") || getMobileNumber.length() == 0
                 || getPassword.equals("") || getPassword.length() == 0
                 || getConfirmPassword.equals("")
-                || getConfirmPassword.length() == 0)
-
-            new CustomToast().Show_Toast(getActivity(), view,"All fields are required.");
+                || getConfirmPassword.length() == 0) {
+            signupLayout.startAnimation(shakeAnimation);
+            new CustomToast().Show_Toast(getActivity(), view, "All fields are required.");
+        }
 
             // Check if email id valid or not
         else if (!m.find())
