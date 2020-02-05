@@ -41,14 +41,14 @@ import java.util.regex.Pattern;
 
 public class SignUp extends Fragment implements OnClickListener {
 
-    private static View view;
-    private static EditText fullName, emailId, mobileNumber, password, confirmPassword, roll;
-    private static TextView login;
-    private static Button signUpButton;
-    private static CheckBox terms_conditions;
-    private static Spinner stream, batch;
-    private static LinearLayout signupLayout;
-    private static Animation shakeAnimation;
+    private View view;
+    private EditText fullName, emailId, mobileNumber, password, confirmPassword, roll;
+    private TextView login;
+    private Button signUpButton;
+    private CheckBox terms_conditions;
+    private Spinner stream, batch;
+    private LinearLayout signupLayout;
+    private Animation shakeAnimation;
     private FirebaseAuth mAuth;
     private FirebaseFirestore fStore;
     private String userID;
@@ -75,9 +75,11 @@ public class SignUp extends Fragment implements OnClickListener {
         signUpButton = view.findViewById(R.id.signUpBtn);
         login = view.findViewById(R.id.already_user);
         terms_conditions = view.findViewById(R.id.terms_conditions);
+
         stream = view.findViewById(R.id.spinner);
         batch = view.findViewById(R.id.spinner2);
         roll = view.findViewById(R.id.roll);
+
         signupLayout = view.findViewById(R.id.signup_layout);
         mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -146,6 +148,7 @@ public class SignUp extends Fragment implements OnClickListener {
         final String getFullName = fullName.getText().toString();
         final String getEmailId = emailId.getText().toString();
         final String getMobileNumber = mobileNumber.getText().toString();
+        //final String getRollNo = stream.getText()
         String getPassword = password.getText().toString();
         String getConfirmPassword = confirmPassword.getText().toString();
 
@@ -167,7 +170,6 @@ public class SignUp extends Fragment implements OnClickListener {
             // Check if email id valid or not
         else if (!m.find())
             new CustomToast().Show_Toast(getActivity(), view,"Your Email Id is Invalid.");
-
             // Check if both password should be equal
         else if (!getConfirmPassword.equals(getPassword))
             new CustomToast().Show_Toast(getActivity(), view,"Both password doesn't match.");

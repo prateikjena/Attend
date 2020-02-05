@@ -1,32 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/teacher">
+    <item android:title="General">
         <menu>
-
             <item
+                android:title="Home"
                 android:id="@+id/home"
-                android:title="Home"/>
-
-            <item
-                android:id="@+id/other"
-                android:title="OTHER"/>
-
+                android:icon="@drawable/ic_home_black_24dp"/>
         </menu>
     </item>
 
-    <item android:title="@string/student">
-    <menu>
-
-        <item
-            android:id="@+id/view"
-            android:title="View"/>
-
-        <item
-            android:id="@+id/edit"
-            android:title="Edit"/>
-
-    </menu>
+    <item android:title="Logout">
+        <menu>
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/ic_logout"
+                android:title="@string/logout" />
+        </menu>
     </item>
-
 </menu>

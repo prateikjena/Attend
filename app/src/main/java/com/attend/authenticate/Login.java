@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
@@ -36,30 +37,35 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Login extends Fragment implements OnClickListener {
 
     private static final int GOOGLE_SIGN_IN_CODE = 10005;
-    private static View view;
+    private View view;
 
-    private static EditText emailid, password;
-    private static Button loginButton;
-    private static TextView forgotPassword, signUp;
-    private static CheckBox show_hide_password;
-    private static LinearLayout loginLayout;
+    private EditText emailid, password;
+    private Button loginButton;
+    private TextView forgotPassword, signUp;
+    private CheckBox show_hide_password;
+    private LinearLayout loginLayout;
     private static Animation shakeAnimation;
     private static FragmentManager fragmentManager;
     private static FirebaseAuth mAuth;
-    private static SignInButton googleBtn;
-    private static GoogleSignInClient signInClient;
+    private SignInButton googleBtn;
+    private GoogleSignInClient signInClient;
 
     public Login() {
 
@@ -85,7 +91,6 @@ public class Login extends Fragment implements OnClickListener {
         signUp = view.findViewById(R.id.createAccount);
         show_hide_password = view.findViewById(R.id.show_hide_password);
         loginLayout = view.findViewById(R.id.login_layout);
-        mAuth = FirebaseAuth.getInstance();
         googleBtn = view.findViewById(R.id.sign_in_button);
 
         // Configure Google Sign In
@@ -95,6 +100,7 @@ public class Login extends Fragment implements OnClickListener {
                 .build();
 
         signInClient = GoogleSignIn.getClient(getContext(),gso);
+        mAuth = FirebaseAuth.getInstance();
 
         //Check Login
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(getContext());
@@ -135,7 +141,7 @@ public class Login extends Fragment implements OnClickListener {
                     public void onCheckedChanged(CompoundButton button,
                                                  boolean isChecked) {
 
-                        // If it is checkec then show password else hide
+                        // If it is checked then show password else hide
                         // password
                         if (isChecked) {
 
@@ -249,7 +255,6 @@ public class Login extends Fragment implements OnClickListener {
 
             try {
                 GoogleSignInAccount signInAcc = signInTask.getResult(ApiException.class);
-
                 AuthCredential authCredential = GoogleAuthProvider.getCredential(signInAcc.getIdToken(),null);
                 mAuth.signInWithCredential(authCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
