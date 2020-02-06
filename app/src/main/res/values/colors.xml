@@ -4,11 +4,20 @@
     <color name="background_color">#009688</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="white_greyish">#EEEEEE</color>
-    <color name="button_selectorcolor">#9E9E9E</color>
+    <color name="white_grayish">#EEEEEE</color>
+    <color name="button_selectorColor">#9E9E9E</color>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#293859</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="bgcolor">#fcfcfc</color>
+    <color name="lightgray">#ededed</color>
+    <color name="deeppurple">#7c4dff</color>
+    <color name="yellow">#ffb300</color>
+    <color name="green">#00bfa5</color>
+    <color name="colorp">#FFC107</color>
+    <color name="colorpd">#FFA000</color>
+    <color name="coloracnt">#FF4081</color>
 
 
 </resources>

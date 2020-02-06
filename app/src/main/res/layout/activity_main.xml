@@ -18,7 +18,7 @@
             android:layout_alignParentEnd="true"
             android:layout_gravity="top|end"
             android:layout_margin="4dp"
-            android:contentDescription="@string/closebutton"
+            android:contentDescription="@string/closeButton"
             android:padding="5dp"
             android:src="@drawable/close" />
 
