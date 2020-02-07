@@ -148,7 +148,7 @@ public class SignUp extends Fragment implements OnClickListener {
         final String getFullName = fullName.getText().toString();
         final String getEmailId = emailId.getText().toString();
         final String getMobileNumber = mobileNumber.getText().toString();
-        //final String getRollNo = stream.getText()
+        final String getRollNo = stream.getSelectedItem().toString() + batch.getSelectedItem().toString()+ "-" + roll.getText();
         String getPassword = password.getText().toString();
         String getConfirmPassword = confirmPassword.getText().toString();
 
@@ -187,12 +187,13 @@ public class SignUp extends Fragment implements OnClickListener {
 
                     if(task.isSuccessful()){
                         userID = mAuth.getCurrentUser().getUid();
-                        DocumentReference documentReference = fStore.collection("users").document(userID);
-                        Map<String, Object> user = new HashMap<>();
-                        user.put("fName",getFullName);
-                        user.put("email",getEmailId);
-                        user.put("Phone",getMobileNumber);
-                        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        DocumentReference documentReference = fStore.collection("students").document(userID);
+                        Map<String, Object> student = new HashMap<>();
+                        student.put("fName",getFullName);
+                        student.put("Roll",getRollNo);
+                        student.put("email",getEmailId);
+                        student.put("Phone",getMobileNumber);
+                        documentReference.set(student).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(getActivity(), "User Created for"+userID, Toast.LENGTH_SHORT).show();

@@ -14,7 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".welcome.Welcome" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".attendance.cardView.CardPagerAdapter"></activity>
+        <activity android:name=".attendance.AttendanceSheet" />
+        <activity android:name=".attendance.TakeAttendance" />
+        <activity
+            android:name=".welcome.Welcome"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".authenticate.CustomToast" />
         <activity android:name=".authenticate.Validator" />
         <activity android:name=".authenticate.ForgotPassword" />
