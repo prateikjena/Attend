@@ -1,73 +1,59 @@
 package com.attend;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
+import android.view.View.OnClickListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.attend.authenticate.Authenticate;
 import com.attend.authenticate.Login;
-import com.attend.authenticate.Validator;
+import com.attend.authenticate.SignUp;
+import com.attend.welcome.Welcome;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
 
-public class MainActivity extends AppCompatActivity {
-    private static FragmentManager fragmentManager;
+public class MainActivity extends AppCompatActivity implements OnClickListener {
+
+    private Button student,teacher;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate(Bundle savedInstancestate) {
+        super.onCreate(savedInstancestate);
         setContentView(R.layout.activity_main);
-        fragmentManager = getSupportFragmentManager();
 
-        // If savedinstnacestate is null then replace login fragment
-        if (savedInstanceState == null) {
-            fragmentManager
-                    .beginTransaction()
-                    .replace(R.id.frameContainer, new Login(),
-                            Validator.Login).commit();
-        }
+        student = findViewById(R.id.student);
+        teacher = findViewById(R.id.teacher);
 
-        // On close icon click finish activity
-        findViewById(R.id.close_activity).setOnClickListener(
-                new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View arg0) {
-                        finish();
-
-                    }
-                });
-
-    }
-
-    // Replace Login Fragment with animation
-    public void replaceLoginFragment() {
-        fragmentManager
-                .beginTransaction()
-                .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
-                .replace(R.id.frameContainer, new Login(),
-                        Validator.Login).commit();
+        student.setOnClickListener(this);
+        teacher.setOnClickListener(this);
     }
 
     @Override
-    public void onBackPressed() {
-
-        // Find the tag of signup and forgot password fragment
-        Fragment SignUp_Fragment = fragmentManager
-                .findFragmentByTag(Validator.SignUp);
-        Fragment ForgotPassword_Fragment = fragmentManager
-                .findFragmentByTag(Validator.ForgotPassword);
-
-        // Check if both are null or not
-        // If both are not null then replace login fragment else do backpressed
-        // task
-
-        if (SignUp_Fragment != null)
-            replaceLoginFragment();
-        else if (ForgotPassword_Fragment != null)
-            replaceLoginFragment();
-        else
-            super.onBackPressed();
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.student:
+                startActivity(new Intent(this, Authenticate.class));
+                break;
+            case R.id.teacher:
+                startActivity(new Intent(this,Authenticate.class));
+                break;
+        }
     }
-
 }

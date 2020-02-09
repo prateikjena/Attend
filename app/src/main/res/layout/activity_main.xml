@@ -1,32 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true"
-    android:overScrollMode="never"
-    android:scrollbars="none" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.attend.MainActivity">
 
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background_color" >
+        android:visibility="visible"
+        android:background="@drawable/bg31"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/close_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="top|end"
-            android:layout_margin="4dp"
-            android:contentDescription="@string/closeButton"
-            android:padding="5dp"
-            android:src="@drawable/close" />
+            android:alpha="0.9"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="#000000"/>
 
-        <FrameLayout
-            android:id="@+id/frameContainer"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@+id/close_activity" />
     </RelativeLayout>
 
-</ScrollView>
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="75dp"
+            android:paddingBottom="150dp"
+            android:text="Att.end"
+            android:textColor="@color/white_grayish"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/student"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/loginbutton_selector"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:padding="3dp"
+            android:text="Sign in As Student"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/white_grayish" />
+
+        <Button
+            android:id="@+id/teacher"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/loginbutton_selector"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:padding="3dp"
+            android:text="Sign in As Instructor"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+</RelativeLayout>
