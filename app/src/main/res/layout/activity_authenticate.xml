@@ -65,15 +65,6 @@
             android:layout_below="@id/createAccount"
             android:layout_centerHorizontal="true" />
 
-
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/login_button"
-            android:layout_width="320dp"
-            android:layout_height="160dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp" />
-
         <TextView
             android:id="@+id/createAccount"
             android:layout_width="wrap_content"
