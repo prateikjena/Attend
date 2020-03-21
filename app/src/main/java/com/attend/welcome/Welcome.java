@@ -3,6 +3,7 @@ package com.attend.welcome;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,7 +31,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Welcome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, WelcomeFragment.onFragmentbtnSelected{
 
@@ -44,6 +51,7 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
      private TextView navName;
      private ImageView navImageView;
      private FirebaseAuth fAuth;
+     String emailId, getFullName, userType;
      private FirebaseFirestore fStore;
 
      @Override
@@ -56,6 +64,7 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
 
          fAuth = FirebaseAuth.getInstance();
          fStore = FirebaseFirestore.getInstance();
+         userType = getIntent().getStringExtra("USER");
 
          drawerLayout = findViewById(R.id.drawer);
          navigationView = findViewById(R.id.navigationView);
@@ -70,13 +79,26 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
          actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
          actionBarDrawerToggle.syncState();
 
+         String user = getIntent().getStringExtra("USER");
+
+         Bundle bundle = new Bundle();
+         bundle.putString("USER", user);
+
+         // set Fragmentclass Arguments
+         WelcomeFragment welcomeFragment = new WelcomeFragment();
+         welcomeFragment.setArguments(bundle);
+
+
          //load fragment by default
          fragmentManager = getSupportFragmentManager();
          fragmentTransaction = fragmentManager.beginTransaction();
-         fragmentTransaction.add(R.id.content_main, new WelcomeFragment());
+         fragmentTransaction.add(R.id.content_main, welcomeFragment);
          fragmentTransaction.commit();
 
          navProfileSetup();
+         if (!getCallingActivity().getClassName().equals("com.attend.MainActivity")) {
+             storeOnFirestore();
+         }
      }
 
      @Override
@@ -115,13 +137,36 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
      private void navProfileSetup() {
          GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
          if (signInAccount != null) {
-             String getFullName = signInAccount.getDisplayName();
+             getFullName = signInAccount.getDisplayName();
              Uri getImage = signInAccount.getPhotoUrl();
+             emailId = signInAccount.getEmail();
 
              Glide.with(this).load(getImage).apply(RequestOptions.circleCropTransform()).into(navImageView);
              navName.setText(getFullName);
-
          }
+     }
+
+     public void storeOnFirestore() {
+         Map<String, Object> user = new HashMap<>();
+         user.put("fName", getFullName);
+         user.put("email", emailId);
+         user.put("userType", userType);
+
+         String userID = fAuth.getCurrentUser().getUid();
+         DocumentReference documentReference = fStore.collection("users").document(userID);
+
+                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                     @Override
+                     public void onSuccess(Void aVoid) {
+                         Log.d("TAG", "DocumentSnapshot successfully written!");
+                     }
+                 })
+                 .addOnFailureListener(new OnFailureListener() {
+                     @Override
+                     public void onFailure(@NonNull Exception e) {
+                         Log.w("TAG", "Error writing document", e);
+                     }
+                 });
      }
 
     @Override

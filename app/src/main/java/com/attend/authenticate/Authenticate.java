@@ -32,6 +32,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class Authenticate extends AppCompatActivity implements OnClickListener {
     public static final int GOOGLE_SIGN_IN_CODE = 10005;
     private FirebaseAuth mAuth;
+    String user;
 
     SignInButton signIn;
     GoogleSignInOptions gso;
@@ -50,6 +51,7 @@ public class Authenticate extends AppCompatActivity implements OnClickListener {
 
         signIn = findViewById(R.id.sign_in_button);
         mAuth = FirebaseAuth.getInstance();
+        user = getIntent().getStringExtra("CLICKED_BUTTON");
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("419486184665-vife4n1du0oh9ang2t6obu9945mbeoas.apps.googleusercontent.com")
@@ -112,6 +114,8 @@ public class Authenticate extends AppCompatActivity implements OnClickListener {
     }
 
     private void updateUI(FirebaseUser currentUser) {
-        startActivity(new Intent(this, Welcome.class));
+        Intent intent = new Intent(this, Welcome.class);
+        intent.putExtra("USER", user);
+        startActivityForResult(intent,3);
     }
 }

@@ -19,7 +19,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
 
     private CardView takeAttendance, viewAttendance, setTimings, viewTimings, studentProfile;
     private View view;
-
+    private String user;
     private onFragmentbtnSelected listener;
 
     @Nullable
@@ -27,6 +27,13 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_welcome, container, false);
         initViews();
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            user = bundle.getString("USER");
+        }
+        cardVisibility();
+
         setListeners();
         return view;
     }
@@ -45,6 +52,15 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
         setTimings.setOnClickListener(this);
         viewTimings.setOnClickListener(this);
         studentProfile.setOnClickListener(this);
+    }
+
+    private void cardVisibility() {
+       // Log.i("INSIDE CARDVISIBILITY", " "+user);
+        if (user.equals("Student")) {
+            takeAttendance.setVisibility(View.INVISIBLE);
+            setTimings.setVisibility(View.INVISIBLE);
+            studentProfile.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
