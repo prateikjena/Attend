@@ -7,12 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.attend.R;
-import com.attend.attendance.cardView.CardAdapter;
 import com.attend.attendance.cardView.CardFragmentPagerAdapter;
 import com.attend.attendance.cardView.ShadowTransformer;
 
@@ -25,7 +23,7 @@ public class TakeAttendance extends Fragment {
 
         ViewPager mViewPager = view.findViewById(R.id.viewPager);
 
-        CardFragmentPagerAdapter mFragmentCardAdapter = new CardFragmentPagerAdapter(getFragmentManager(), dpToPixels(2, getContext()));
+        CardFragmentPagerAdapter mFragmentCardAdapter = new CardFragmentPagerAdapter(getFragmentManager(), dpToPixels(getContext()));
         ShadowTransformer mFragmentCardShadowTransformer = new ShadowTransformer(mViewPager, mFragmentCardAdapter);
 
         mViewPager.setAdapter(mFragmentCardAdapter);
@@ -34,8 +32,8 @@ public class TakeAttendance extends Fragment {
         return view;
     }
 
-    public static float dpToPixels(int dp, Context context) {
-        return dp * (context.getResources().getDisplayMetrics().density);
+    private static float dpToPixels(Context context) {
+        return 2 * (context.getResources().getDisplayMetrics().density);
     }
 
 }

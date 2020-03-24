@@ -25,7 +25,7 @@ public class CardFragment extends Fragment {
         return view;
     }
 
-    public CardView getCardView() {
+    CardView getCardView() {
         return mCardView;
     }
 }

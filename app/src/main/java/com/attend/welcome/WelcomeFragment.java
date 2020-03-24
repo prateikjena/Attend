@@ -55,7 +55,6 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void cardVisibility() {
-       // Log.i("INSIDE CARDVISIBILITY", " "+user);
         if (user.equals("Student")) {
             takeAttendance.setVisibility(View.INVISIBLE);
             setTimings.setVisibility(View.INVISIBLE);
@@ -73,7 +72,6 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.TakeAttendance:
-                //startActivity(new Intent(getActivity().getApplicationContext(), TakeAttendance.class));
                 listener.onButtonSelected();
                 break;
 
