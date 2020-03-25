@@ -13,21 +13,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".attendance.cardView.CardFragment" />
+        <activity android:name=".attendance.TakeAttendance"/>
         <activity android:name=".authenticate.ForgotPassword" />
         <activity android:name=".authenticate.Authenticate" />
         <activity android:name=".authenticate.SignUp" />
         <activity android:name=".authenticate.Login" />
         <activity android:name=".attendance.AttendanceSheet" />
-        <activity android:name=".attendance.TakeAttendance" />
-        <activity android:name=".slider.Slider" android:noHistory="true"/>
-        <activity android:name=".MainActivity" android:noHistory="true"/>
+        <activity
+            android:name=".slider.Slider"
+            android:noHistory="true" />
+        <activity
+            android:name=".MainActivity"
+            android:noHistory="true" />
         <activity
             android:name=".welcome.Welcome"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".Splash" android:noHistory="true">
+        <activity
+            android:name=".Splash"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

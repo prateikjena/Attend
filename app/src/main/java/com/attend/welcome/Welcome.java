@@ -22,7 +22,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.attend.MainActivity;
 import com.attend.R;
-import com.attend.attendance.TakeAttendance;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -38,7 +37,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Welcome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, WelcomeFragment.onFragmentbtnSelected{
+public class Welcome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
      private View header;
      private DrawerLayout drawerLayout;
@@ -189,11 +188,4 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
                  });
      }
 
-    @Override
-    public void onButtonSelected() {
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.content_main, new TakeAttendance());
-        fragmentTransaction.commit();
-    }
 }

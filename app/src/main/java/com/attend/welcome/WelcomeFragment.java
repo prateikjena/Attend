@@ -20,7 +20,6 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
     private CardView takeAttendance, viewAttendance, setTimings, viewTimings, studentProfile;
     private View view;
     private String user;
-    private onFragmentbtnSelected listener;
 
     @Nullable
     @Override
@@ -64,6 +63,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        Intent i;
         switch (v.getId()) {
             case R.id.AttendanceHistory :
                 break;
@@ -72,7 +72,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.TakeAttendance:
-                listener.onButtonSelected();
+                startActivity(new Intent(getContext(), TakeAttendance.class));
                 break;
 
             case R.id.SetTimings:
@@ -83,18 +83,4 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        if (context instanceof onFragmentbtnSelected) {
-            listener = (onFragmentbtnSelected) context;
-        } else {
-            throw new ClassCastException(context.toString() + "must implement listener");
-        }
-    }
-
-    public interface onFragmentbtnSelected {
-        void onButtonSelected();
-    }
 }
