@@ -51,6 +51,7 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
      private FirebaseAuth fAuth;
      String emailId, getFullName, userType;
      private FirebaseFirestore fStore;
+     Uri getImage;
     boolean doubleBackToExitPressedOnce = false;
 
      @Override
@@ -95,9 +96,10 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
          fragmentTransaction.commit();
 
          navProfileSetup();
-         if (!getCallingActivity().getClassName().equals("com.attend.MainActivity")) {
+
+         /*if (!getCallingActivity().getClassName().equals("com.attend.MainActivity")) {
              storeOnFirestore();
-         }
+         }*/
      }
 
     @Override
@@ -157,7 +159,7 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
          GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
          if (signInAccount != null) {
              getFullName = signInAccount.getDisplayName();
-             Uri getImage = signInAccount.getPhotoUrl();
+             getImage = signInAccount.getPhotoUrl();
              emailId = signInAccount.getEmail();
 
              Glide.with(this).load(getImage).apply(RequestOptions.circleCropTransform()).into(navImageView);
@@ -170,6 +172,7 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
          user.put("fName", getFullName);
          user.put("email", emailId);
          user.put("userType", userType);
+         user.put("ImageURI", getImage);
 
          String userID = fAuth.getCurrentUser().getUid();
          DocumentReference documentReference = fStore.collection("users").document(userID);

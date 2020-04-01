@@ -1,6 +1,5 @@
 package com.attend.welcome;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.attend.R;
+import com.attend.attendance.Batches;
 import com.attend.attendance.TakeAttendance;
 
 public class WelcomeFragment extends Fragment implements View.OnClickListener {
@@ -72,7 +72,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.TakeAttendance:
-                startActivity(new Intent(getContext(), TakeAttendance.class));
+                startActivity(new Intent(getContext(), Batches.class));
                 break;
 
             case R.id.SetTimings:

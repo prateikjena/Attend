@@ -1,7 +1,6 @@
 package com.attend.attendance.cardview;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +47,7 @@ public class Adapter extends PagerAdapter {
         title = view.findViewById(R.id.title);
         desc = view.findViewById(R.id.desc);
 
-        imageView.setImageResource(models.get(position).getImage());
+       // imageView.setImageResource(models.get(position).getImage());
         title.setText(models.get(position).getTitle());
         desc.setText(models.get(position).getDesc());
 
