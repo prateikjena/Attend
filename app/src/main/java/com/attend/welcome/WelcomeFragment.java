@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import com.attend.R;
 import com.attend.attendance.Batches;
-import com.attend.attendance.TakeAttendance;
 
 public class WelcomeFragment extends Fragment implements View.OnClickListener {
 

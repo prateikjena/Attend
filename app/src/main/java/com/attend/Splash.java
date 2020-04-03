@@ -1,12 +1,12 @@
 package com.attend;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.attend.slider.LuncherManager;
 import com.attend.slider.Slider;

@@ -84,7 +84,7 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
          Bundle bundle = new Bundle();
          bundle.putString("USER", user);
 
-         // set Fragmentclass Arguments
+         // set Fragment class Arguments
          WelcomeFragment welcomeFragment = new WelcomeFragment();
          welcomeFragment.setArguments(bundle);
 
@@ -96,10 +96,6 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
          fragmentTransaction.commit();
 
          navProfileSetup();
-
-         /*if (!getCallingActivity().getClassName().equals("com.attend.MainActivity")) {
-             storeOnFirestore();
-         }*/
      }
 
     @Override

@@ -14,7 +14,7 @@ public class Adapter extends PagerAdapter {
 
     public Adapter (Context context, int[] layouts) {
         this.layouts=layouts;
-        this.layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @NonNull

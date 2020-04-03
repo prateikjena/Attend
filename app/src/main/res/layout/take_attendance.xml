@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.viewpager.widget.ViewPager
+    <com.attend.attendance.NonSwipableViewPager
         android:foregroundGravity="center"
         android:id="@+id/viewPager"
         android:layout_centerInParent="true"
@@ -16,6 +16,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <TextView
+        android:id="@+id/showDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="CurrentDate"
+        android:textColor="#000"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/present"
