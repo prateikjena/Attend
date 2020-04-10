@@ -1,5 +1,7 @@
 package com.attend.welcome;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.attend.MainActivity;
 import com.attend.R;
+import com.attend.about.Developers;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -52,7 +55,7 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
      String emailId, getFullName, userType;
      private FirebaseFirestore fStore;
      Uri getImage;
-    boolean doubleBackToExitPressedOnce = false;
+     boolean doubleBackToExitPressedOnce = false;
 
      @Override
      protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +67,10 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
 
          fAuth = FirebaseAuth.getInstance();
          fStore = FirebaseFirestore.getInstance();
-         userType = getIntent().getStringExtra("USER");
 
          drawerLayout = findViewById(R.id.drawer);
          navigationView = findViewById(R.id.navigationView);
          navigationView.setNavigationItemSelectedListener(this);
-
          header = navigationView.getHeaderView(0);
          navName = header.findViewById(R.id.navigation_name);
          navImageView = header.findViewById(R.id.navigation_image);
@@ -79,15 +80,8 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
          actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
          actionBarDrawerToggle.syncState();
 
-         String user = getIntent().getStringExtra("USER");
-
-         Bundle bundle = new Bundle();
-         bundle.putString("USER", user);
-
          // set Fragment class Arguments
          WelcomeFragment welcomeFragment = new WelcomeFragment();
-         welcomeFragment.setArguments(bundle);
-
 
          //load fragment by default
          fragmentManager = getSupportFragmentManager();
@@ -148,10 +142,14 @@ public class Welcome extends AppCompatActivity implements NavigationView.OnNavig
              finish();
          }
 
+         if (menuItem.getItemId() == R.id.developers) {
+             startActivity(new Intent(this, Developers.class));
+         }
+
          return true;
      }
 
-     private void navProfileSetup() {
+     public void navProfileSetup() {
          GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
          if (signInAccount != null) {
              getFullName = signInAccount.getDisplayName();

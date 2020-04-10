@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.attend.authenticate.Authenticate;
+import com.attend.welcome.StudentActivity;
 import com.attend.welcome.Welcome;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                         String type = document.getString("userType");
                         if(type.equals("Student")) {
                             intent.putExtra("USER", type);
-                            startActivityForResult(intent, 1);
+                            startActivityForResult(new Intent(MainActivity.this, StudentActivity.class), 1);
                         } else if (type.equals("Teacher")) {
                             intent.putExtra("USER", type);
                             startActivityForResult(intent, 2);

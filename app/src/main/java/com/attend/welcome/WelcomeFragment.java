@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.attend.R;
 import com.attend.attendance.Batches;
+import com.attend.timings.AddTimings;
 
 public class WelcomeFragment extends Fragment implements View.OnClickListener {
 
@@ -25,12 +26,6 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_welcome, container, false);
         initViews();
-
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            user = bundle.getString("USER");
-        }
-        cardVisibility();
 
         setListeners();
         return view;
@@ -52,17 +47,8 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
         studentProfile.setOnClickListener(this);
     }
 
-    private void cardVisibility() {
-        if (user.equals("Student")) {
-            takeAttendance.setVisibility(View.INVISIBLE);
-            setTimings.setVisibility(View.INVISIBLE);
-            studentProfile.setVisibility(View.INVISIBLE);
-        }
-    }
-
     @Override
     public void onClick(View v) {
-        Intent i;
         switch (v.getId()) {
             case R.id.AttendanceHistory :
                 break;
@@ -75,6 +61,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.SetTimings:
+                startActivity(new Intent(getContext(), AddTimings.class));
                 break;
 
             case R.id.StudentProfile:

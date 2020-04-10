@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="background_color">#009688</color>
+    <color name="mainBackground">#C2000000</color>
     <color name="white">#FFFFFF</color>
     <color name="white_grayish">#EEEEEE</color>
     <color name="button_selectorColor">#9E9E9E</color>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#293859</color>
-    <color name="colorAccent">#FF4081</color>
 
     <color name="lightgray">#ededed</color>
     <color name="deeppurple">#7c4dff</color>

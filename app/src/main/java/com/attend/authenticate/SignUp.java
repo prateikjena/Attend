@@ -33,7 +33,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private EditText fullName, emailId, mobileNumber, password, confirmPassword, roll;
     private CheckBox terms_conditions;
     private Button signUpButton;
-    private Spinner stream, batch;
     private FirebaseFirestore fStore;
     private String userID;
 
@@ -50,9 +49,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         password = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmPassword);
         signUpButton = findViewById(R.id.signUpBtn);
-        stream = findViewById(R.id.spinner);
-        batch = findViewById(R.id.spinner2);
-        roll = findViewById(R.id.roll);
         terms_conditions = findViewById(R.id.terms_conditions);
         mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();

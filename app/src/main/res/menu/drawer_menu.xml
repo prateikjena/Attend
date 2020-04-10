@@ -10,8 +10,13 @@
         </menu>
     </item>
 
-    <item android:title="Logout">
+    <item android:title="Settings">
         <menu>
+            <item
+                android:id="@+id/developers"
+                android:icon="@drawable/coding"
+                android:title="Developers" />
+
             <item
                 android:id="@+id/logout"
                 android:icon="@drawable/ic_logout"

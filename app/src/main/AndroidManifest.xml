@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".attendance.Batches"></activity>
+        <activity android:name=".timings.AddTimings"></activity>
+        <activity android:name=".about.Developers" />
+        <activity android:name=".welcome.StudentActivity" />
+        <activity android:name=".attendance.Batches" />
         <activity android:name=".attendance.TakeAttendance" />
         <activity android:name=".authenticate.ForgotPassword" />
         <activity android:name=".authenticate.Authenticate" />

@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.attend.R;
+import com.attend.welcome.StudentActivity;
 import com.attend.welcome.Welcome;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -33,7 +34,6 @@ public class Authenticate extends AppCompatActivity implements OnClickListener {
     public static final int GOOGLE_SIGN_IN_CODE = 10005;
     private FirebaseAuth mAuth;
     String user;
-
     SignInButton signIn;
     GoogleSignInOptions gso;
     GoogleSignInClient signInClient;
@@ -110,12 +110,13 @@ public class Authenticate extends AppCompatActivity implements OnClickListener {
                 startActivity(new Intent(this, SignUp.class));
                 break;
         }
-
     }
 
     private void updateUI(FirebaseUser currentUser) {
-        Intent intent = new Intent(this, Welcome.class);
-        intent.putExtra("USER", user);
-        startActivityForResult(intent,3);
+        if (user.equals("Student")) {
+            startActivity(new Intent(this, StudentActivity.class));
+        } else {
+            startActivityForResult(new Intent(this, Welcome.class),3);
+        }
     }
 }
